@@ -1,11 +1,11 @@
 <template>
     <div>
-    <Header/>
-    <div style="margin-left: 10px; margin-top: 20px;">
-        <input class="input" v-model="param" value="">
-        <v-btn @click="write" small >Задать</v-btn>
-        {{param_for_store}}
-    </div>
+        <Header/>
+        <div style="margin-left: 10px; margin-top: 20px;">
+            <input class="input" v-model="param" value="">
+            <v-btn @click="write" small>Задать</v-btn>
+            {{param_for_store}}
+        </div>
     </div>
 </template>
 
@@ -22,7 +22,7 @@
             param_for_store: ''
 
         }),
-        methods:{
+        methods: {
             write() {
                 this.$store.dispatch('actionValue', this.param);
                 this.param_for_store = this.$store.getters.getValue;

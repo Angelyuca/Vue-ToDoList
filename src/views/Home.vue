@@ -54,6 +54,11 @@
             }
         },
         methods: {
+            sort(){
+                this.items = this.items.sort((a, b) => a.is_complete - b.is_complete);
+            },
+
+
             del(item) {
                 let index = this.items.indexOf(item);
                 this.items.splice(index, 1);
@@ -68,14 +73,14 @@
                     text: item.text,
                     is_complete: !item.is_complete
                 };
-                console.log(obj);
                 this.items.splice(index, 0, obj);
                 this.$store.dispatch('actionTasks', this.items);
+                setTimeout(this.sort, 10);
             }
         },
         created: function () {
-
             this.items = this.$store.getters.getTasks;
+            this.sort();
         }
     }
 
