@@ -27,11 +27,11 @@
         methods: {
             add(obj_task) {
                 if (obj_task.text !== '') {
-                    this.items.unshift({
+                    let obj = {
                         text: obj_task.text,
                         is_complete: obj_task.is_complete
-                    });
-                    this.$store.dispatch('actionTasks', this.items);
+                    };
+                    this.$store.dispatch('actionTasks', obj);
                     this.obj_task.text = '';
                     this.$router.push('/')
                 }
@@ -107,9 +107,10 @@
             width: 80%;
             height: 400px;
         }
+
         .input-task {
             margin-top: 10px;
-            height: 98%!important;
+            height: 98% !important;
         }
 
     }

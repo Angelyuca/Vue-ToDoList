@@ -54,27 +54,22 @@
             }
         },
         methods: {
-            sort(){
+            sort() {
                 this.items = this.items.sort((a, b) => a.is_complete - b.is_complete);
             },
 
-
             del(item) {
                 let index = this.items.indexOf(item);
-                this.items.splice(index, 1);
-                this.$store.dispatch('actionTasks', this.items);
-
+                this.$store.dispatch('actionDelete', index);
             },
 
             done(item) {
                 let index = this.items.indexOf(item);
-                this.items.splice(index, 1);
                 let obj = {
                     text: item.text,
                     is_complete: !item.is_complete
                 };
-                this.items.splice(index, 0, obj);
-                this.$store.dispatch('actionTasks', this.items);
+                this.$store.dispatch('actionDone', {obj: obj, index: index});
                 setTimeout(this.sort, 10);
             }
         },
